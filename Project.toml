@@ -1,0 +1,16 @@
+name = "PaPILO"
+uuid = "d9c0c21a-f458-4936-9625-08537585e348"
+authors = ["Mathieu Besançon <mathieu.besancon@gmail.com> and contributors"]
+version = "0.1.0"
+
+[deps]
+SCIP_PaPILO_jll = "fc9abe76-a5e6-5fed-b0b7-a12f309cf031"
+
+[compat]
+julia = "1.6"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
