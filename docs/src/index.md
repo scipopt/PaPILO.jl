@@ -4,7 +4,7 @@ CurrentModule = PaPILO
 
 # PaPILO
 
-Documentation for [PaPILO](https://github.com/matbesancon/PaPILO.jl).
+Documentation for [PaPILO](https://github.com/scipopt/PaPILO.jl).
 
 ```@index
 ```

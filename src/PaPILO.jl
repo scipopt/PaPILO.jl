@@ -16,6 +16,12 @@ module PaPILO
 
 import SCIP_PaPILO_jll
 
+"""
+    presolve_write_from_file(problem_input::String, problem_postsolve::String, reduced_problem::String)
+
+Given the file `problem_input` containing the original problem, presolve it,
+store the presolved problem file in `reduced_problem` with the postsolve file written to `problem_postsolve`.
+"""
 function presolve_write_from_file(problem_input::String, problem_postsolve::String, reduced_problem::String)
     @assert isfile(problem_input)
     SCIP_PaPILO_jll.papilo() do exe
