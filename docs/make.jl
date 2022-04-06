@@ -5,12 +5,12 @@ DocMeta.setdocmeta!(PaPILO, :DocTestSetup, :(using PaPILO); recursive=true)
 
 makedocs(;
     modules=[PaPILO],
-    authors="Mathieu Besançon <mathieu.besancon@gmail.com> and contributors",
-    repo="https://github.com/matbesancon/PaPILO.jl/blob/{commit}{path}#{line}",
+    authors="Alexander Hoen, Mathieu Besançon, and contributors",
+    repo="https://github.com/scipopt/PaPILO.jl/blob/{commit}{path}#{line}",
     sitename="PaPILO.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://matbesancon.github.io/PaPILO.jl",
+        canonical="https://scipopt.github.io/PaPILO.jl",
         assets=String[],
     ),
     pages=[
@@ -19,6 +19,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/matbesancon/PaPILO.jl",
+    repo="github.com/scipopt/PaPILO.jl",
     devbranch="main",
 )
