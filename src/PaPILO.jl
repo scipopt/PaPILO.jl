@@ -29,4 +29,12 @@ function presolve_write_from_file(problem_input::String, problem_postsolve::Stri
     end
 end
 
+function postsolve_from_file(problem_postsolve, reduced_sol, original_sol)
+    @assert isfile(problem_postsolve)
+    @assert isfile(reduced_sol)
+    SCIP_PaPILO_jll.papilo() do exe
+        run(`$exe postsolve -v $problem_postsolve -u $reduced_sol -l $original_sol`)
+    end
+end
+
 end

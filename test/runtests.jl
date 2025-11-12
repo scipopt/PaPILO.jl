@@ -1,5 +1,6 @@
 using PaPILO
 using Test
+using SCIP
 
 const test_file = """
 NAME          FLUGPL
@@ -111,4 +112,16 @@ ENDATA
     PaPILO.presolve_write_from_file(input_instance, postsolve_file, presolved_instance)
     @test isfile(presolved_instance)
     @test isfile(postsolve_file)
+    
+    # solve the problem using SCIP
+    o = SCIP.Optimizer()
+    SCIP.LibSCIP.SCIPreadProb(o, presolved_instance, C_NULL)
+    SCIP.LibSCIP.SCIPsolve(o)
+    reduced_sol = tempname() * ".sol"
+    open(reduced_sol, "w") do f
+        SCIP.LibSCIP.SCIPprintBestSol(o, Libc.FILE(f), 0)
+    end
+    original_sol = tempname() * ".sol"
+    PaPILO.postsolve_from_file(postsolve_file, reduced_sol, original_sol)
+    @test isfile(original_sol)
 end
