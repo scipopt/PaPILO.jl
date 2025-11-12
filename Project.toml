@@ -10,6 +10,7 @@ SCIP_PaPILO_jll = "fc9abe76-a5e6-5fed-b0b7-a12f309cf031"
 [compat]
 MathOptInterface = "1.46.0"
 SCIP = "0.12.7"
+Test = "1"
 julia = "1.10"
 
 [extras]
