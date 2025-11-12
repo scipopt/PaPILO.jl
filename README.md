@@ -11,18 +11,23 @@ A file-based Julia wrapper for the [PaPILO](https://github.com/scipopt/papilo) l
 ```julia
 using PaPILO
 
+# 1) presolve problem from file
+
 PaPILO.presolve_write_from_file(
     input_instance, # original MPS file
     postsolve_file, # file name where to write the postsolve information
     presolved_instance # file name where to write the presolved problem
 )
 
-# solve problem from presolved_instance
-# write solution to file reduced_sol
+# 2) solve problem from presolved_instance with an external solver
+#    write solution to file reduced_sol
+
+# 3) postsolve: compute the solution in the original problem space from
+#    the solution in the reduced space
 
 PaPILO.postsolve_from_file(
     postsolve_file, # postsolve file produced by the previous function
-    reduced_sol, # .sol file produced by the solve step
-    original_sol, # name where to write the solution to the original problem
+    reduced_sol, # .sol file of a solution that is feasible for the reduced problem
+    original_sol, # file name where to write the solution to the original problem
 )
 ```
