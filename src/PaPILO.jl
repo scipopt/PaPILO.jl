@@ -15,7 +15,9 @@
 module PaPILO
 
 import SCIP_PaPILO_jll
+import MathOptInterface as MOI
 
 include("file_operations.jl")
+include("moi_interface.jl")
 
 end

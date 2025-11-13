@@ -1,6 +1,7 @@
 using PaPILO
 using Test
 using SCIP
+using MathOptInterface
 
 const test_file = """
 NAME          FLUGPL
@@ -102,7 +103,7 @@ BOUNDS
 ENDATA
 """
 
-@testset "PaPILO.jl" begin
+@testset "PaPILO file interface" begin
     input_instance = tempname() * ".mps"
     open(input_instance, "w") do f
         write(f, test_file)
@@ -124,4 +125,19 @@ ENDATA
     original_sol = tempname() * ".sol"
     PaPILO.postsolve_from_file(postsolve_file, reduced_sol, original_sol)
     @test isfile(original_sol)
+end
+
+@testset "MOI model interface" begin
+    input_instance = tempname() * ".mps"
+    open(input_instance, "w") do f
+        write(f, test_file)
+    end
+    original_model = SCIP.Optimizer()
+    MOI.read_from_file(original_model, input_instance)
+    reduced_model = SCIP.Optimizer()
+
+    map_reduced_solution_to_original = PaPILO.copy_presolve_model(reduced_model, original_model)
+    MOI.optimize!(reduced_model)
+    reduced_model_from_file = SCIP.Optimizer()
+    MOI.read_from_file(reduced_model_from_file, "reduced.mps")
 end
