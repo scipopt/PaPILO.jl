@@ -1,7 +1,7 @@
 name = "PaPILO"
 uuid = "d9c0c21a-f458-4936-9625-08537585e348"
 authors = ["Mathieu Besançon <mathieu.besancon@gmail.com> and contributors"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
